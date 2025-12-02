@@ -122,13 +122,19 @@ envelope.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key ===
 let playing = false;
 if (playBtn) {
   playBtn.addEventListener('click', () => {
+    const playIcon = playBtn.querySelector('.play-icon');
+    const pauseIcon = playBtn.querySelector('.pause-icon');
     if (!playing) {
       audio.play().catch(()=>{});
       playBtn.textContent = 'Pausar canción ⏸';
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = 'inline-block';
       playing = true;
     } else {
       audio.pause();
       playBtn.textContent = '🎵 Dale play a nuestra canción';
+      playIcon.style.display = 'inline-block';
+      pauseIcon.style.display = 'none';
       playing = false;
     }
   });
