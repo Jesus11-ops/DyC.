@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nuestra Boda — David &amp; Carolina</title>
+
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- intro removed so the cover shows immediately -->
+
+  <!-- PARTÍCULAS DORADAS (CANVAS) -->
+  <canvas id="particlesCanvas" class="particles-canvas"></canvas>
+
+  <!-- SOBRE (PORTADA) -->
+  <main id="cover" class="cover">
+    <div class="cover-inner">
+      <!-- small decorative petals -->
+      <div class="petals" aria-hidden="true"></div>
+
+      <div class="title-block">
+        <div class="label">Nuestra Boda</div>
+        <h2 class="names">David &amp; Carolina</h2>
+        <div class="date">27 / 12 / 2025 — 9:00 AM</div>
+      </div>
+
+      <!-- Sobre realista: tapa + cuerpo + sello de lacre con icono 'play' -->
+      <div id="envelope" class="envelope" aria-label="Abrir invitación" role="button" tabindex="0">
+        <div class="env-shadow" aria-hidden="true"></div>
+        <!-- flap / tapa -->
+        <div class="env-top" aria-hidden="true"></div>
+
+        <!-- body: realistic gradient + decorative highlight -->
+        <div class="env-body">
+          <!-- env-body (no inline seal) -->
+        </div>
+        <!-- move wax seal outside env-body so it visually sits ABOVE the envelope seam -->
+        <div class="wax-seal" aria-hidden="true">
+          <div class="seal-outer"></div>
+          <div class="seal-inner" aria-hidden="true">
+            <div class="seal-emboss">D &amp; C</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decorative florals (inline SVG) placed around the cover for a richer look -->
+      <div class="cover-decor decor-top-left" aria-hidden="true">
+        <!-- blue floral cluster (top-left) inspired by provided reference -->
+        <svg width="220" height="200" viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="flowerA" x1="0" x2="1">
+              <stop offset="0" style="stop-color:var(--white); stop-opacity:1" />
+              <stop offset="1" style="stop-color:var(--mint); stop-opacity:0.9" />
+            </linearGradient>
+            <linearGradient id="flowerB" x1="0" x2="1">
+              <stop offset="0" style="stop-color:rgba(255,255,255,0.9); stop-opacity:1" />
+              <stop offset="1" style="stop-color:var(--mint-dark); stop-opacity:0.9" />
+            </linearGradient>
+          </defs>
+          <g transform="translate(6,6)" opacity="0.98">
+            <!-- large watercolor-like blossom (more organic petals) -->
+            <g transform="translate(48,42) scale(1.02)">
+              <defs>
+                  <radialGradient id="pA" cx="50%" cy="40%">
+                      <stop offset="0" stop-color="#ffffff" stop-opacity="0.96"/>
+                      <stop offset="1" stop-color="#d6b8f0" stop-opacity="0.94"/>
+                    </radialGradient>
+              </defs>
+              <!-- layered translucent petals to mimic watercolor petals -->
+              <g opacity="0.95">
+                <path fill="url(#pA)" d="M6 -26 C28 -30, 46 -8, 36 14 C24 34, 2 36, -14 18 C-30 -2, -10 -20, 6 -26" opacity="0.95"/>
+                <path fill="url(#pA)" d="M10 -8 C30 -20, 50 -2, 40 18 C32 36, 10 34, -6 16 C-20 -2, -6 -10, 10 -8" transform="rotate(25)" opacity="0.85"/>
+                <path fill="url(#pA)" d="M10 -8 C30 -20, 50 -2, 40 18 C32 36, 10 34, -6 16 C-20 -2, -6 -10, 10 -8" transform="rotate(60)" opacity="0.78"/>
+                <path fill="url(#pA)" d="M12 -12 C34 -26, 54 -6, 44 18 C34 40, 10 36, -6 14 C-22 -8, -8 -12, 12 -12" transform="rotate(105)" opacity="0.70"/>
+              </g>
+              <circle r="6" fill="#ffffff" cx="0" cy="0" opacity="0.98"/>
+            </g>
+
+            <!-- secondary small bloom -->
+            <g transform="translate(112,20)">
+              <g fill="url(#flowerB)" opacity="0.96">
+                <path d="M0 -14 C10 -18, 22 -6, 18 6 C14 18, -4 18, -8 6 C-12 -6, -2 -12, 0 -14"/>
+                <path d="M6 -8 C14 -10, 26 -2, 22 8 C18 18, 2 18, -4 8 C-10 -2, -2 -6, 6 -8" transform="rotate(45)"/>
+              </g>
+              <circle r="5" fill="#b78fe2" cx="0" cy="0"/>
+            </g>
+
+            <!-- soft leaves / filler strokes in gray -->
+            <g transform="translate(8,88)" stroke="var(--gray)" stroke-width="1.6" fill="none" opacity="0.9">
+              <path d="M4 22c8-8 22-14 36-6" stroke-linecap="round" />
+              <path d="M6 40c8-10 28-22 44-14" stroke-linecap="round" />
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div class="cover-decor decor-bottom-right" aria-hidden="true">
+        <!-- blue floral cluster (bottom-right) inspired by provided reference -->
+        <svg width="200" height="180" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+            <defs>
+            <linearGradient id="flowerC" x1="0" x2="1">
+              <stop offset="0" style="stop-color:var(--white); stop-opacity:1" />
+              <stop offset="1" style="stop-color:#c8a2e8; stop-opacity:0.9" />
+            </linearGradient>
+          </defs>
+          <g transform="translate(10,12)" opacity="0.98">
+            <!-- bottom-right watercolor cluster (more realistic petals) -->
+            <g transform="translate(48,118)">
+              <defs>
+                <radialGradient id="pC" cx="45%" cy="45%">
+                  <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+                  <stop offset="1" stop-color="var(--mint)" stop-opacity="0.9"/>
+                </radialGradient>
+              </defs>
+              <g opacity="0.98">
+                <path fill="url(#pC)" d="M2 -24 C22 -26, 46 -4, 36 16 C26 36, 2 36, -14 18 C-28 -2, -6 -20, 2 -24" opacity="0.96"/>
+                <path fill="url(#pC)" d="M12 -10 C30 -22, 56 -2, 42 20 C30 40, 6 38, -6 18 C-18 -2, -6 -10, 12 -10" transform="rotate(40)" opacity="0.84"/>
+                <path fill="url(#pC)" d="M8 -8 C28 -18, 52 -2, 36 22 C24 44, 6 40, -8 20 C-22 2, -8 -12, 8 -8" transform="rotate(80)" opacity="0.78"/>
+              </g>
+              <circle r="7" cx="0" cy="0" fill="#b78fe2" />
+            </g>
+            <g transform="translate(118,104)">
+              <g fill="var(--white)" opacity="0.98">
+                <path d="M2 -16 C14 -18, 30 -4, 22 12 C14 28, -2 28, -12 10 C-22 -8, -2 -16, 2 -16"/>
+                <path d="M10 -6 C22 -8, 38 2, 30 14 C22 26, 6 30, -4 14" transform="rotate(40)"/>
+              </g>
+            </g>
+            <g transform="translate(6,14)" stroke="var(--gray)" stroke-width="1.6" fill="none">
+              <path d="M14 14c8 2 24 2 34-6" stroke-linecap="round"/>
+              <path d="M20 50c12-6 30-16 52-8" stroke-linecap="round"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div class="cover-hint">Desliza o haz clic en el sobre</div>
+    </div>
+  </main>
+
+  <!-- CONTENIDO PRINCIPAL (OCULTO HASTA ABRIR) -->
+  <section id="app" class="app hidden" aria-hidden="true">
+
+    <!-- Brillos sutiles -->
+    <div class="sparkles" aria-hidden="true"></div>
+
+
+    <!---------->
+
+
+    <!---------->
+
+    <!-- HERO -->
+    <!-- HERO -->
+<header class="hero">
+  <div class="hero-top">
+    <div class="photo-wrap">
+
+      <!-- Frase bíblica -->
+      <div class="bible-quote">
+        <p class="quote-text">"Y sobre todas estas cosas vestíos de amor, que es el vínculo perfecto."</p>
+        <p class="quote-reference">Colosenses 3:14</p>
+      </div>
+
+      <!-- Iniciales -->
+      <div class="couple-initials">
+        <span class="initial">D</span>
+        <span class="divider">|</span>
+        <span class="initial">C</span>
+      </div>
+
+      <!-- Etiqueta "¡NOS CASAMOS!" -->
+      <div class="wedding-label">¡NOS CASAMOS!</div>
+
+      <!-- Foto principal -->
+      <div class="photo-frame">
+        <img id="mainPhoto" class="main-photo" src="img/2.jpeg" alt="David & Carolina">
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <p class="hero-sub">con nuestro amor, la bendición de Dios y de nuestros 
+      padres: <br> <br><br> Nosotros
+    </p>
+    <h1 class="hero-names">David &amp; Carolina</h1>
+    <p class="hero-sub"><br> 
+    Tenemos el honor de invitarte a celebrar nuestra unión en matrimonio </p>
+
+    <div class="music-row">
+      <button id="playBtn" class="btn music glass">🎵 Dale play a nuestra canción </button>
+      <audio id="audio" preload="none">
+        <source src="img/Momentos.mp3" type="audio/mp3" >
+      </audio>
+    </div>
+
+    <div id="countdown" class="countdown fancy-countdown" aria-live="polite" >
+      <div class="cd-card"><span id="cd-days">--</span><small>Días</small></div>
+      <div class="cd-card"><span id="cd-hours">--</span><small>Horas</small></div>
+      <div class="cd-card"><span id="cd-mins">--</span><small>Minutos</small></div>
+      <div class="cd-card"><span id="cd-secs">--</span><small>Segundos</small></div>
+    </div>
+
+    
+  </div>
+</header>
+
+    
+
+    
+    <section class="card message-card">
+      <div class="message-header">
+        <h2>Un mensaje para ti</h2>
+        <div class="message-actions">
+          
+        </div>
+      </div>
+      <p id="welcomeText" class="welcome-text">“Hoy celebramos la decisión más bonita: unir nuestras vidas rodeados de las personas que amamos.”</p>
+    </section>
+
+    
+  <!-- FRASES ROTADORAS -->
+    <section class="card section phrases">
+      <h2>Frases</h2>
+      <blockquote id="phraseText">"El amor no mira con los ojos, sino con el alma."</blockquote>
+      <div class="phrase-controls">
+        <button id="prevPhrase">Anterior</button>
+        <button id="nextPhrase">Siguiente</button>
+      </div>
+    </section>
+
+
+
+
+
+
+    <!-- CARRUSEL -->
+    <section class="card photos-card">
+      <h3>Fotos</h3>
+      <div class="carousel" id="carousel">
+        <button class="carousel-btn prev" id="prevBtn">‹</button>
+        <div class="carousel-track" id="track" tabindex="0" aria-label="Carrusel de fotos">
+          <img src="img/1.jpeg" alt="foto 1" class="slide">
+          <img src="img/3.jpeg" alt="foto 2" class="slide">
+          <img src="img/4.jpeg" alt="foto 3" class="slide">
+        </div>
+        <button class="carousel-btn next" id="nextBtn">›</button>
+      </div>
+    </section>
+
+    <!-- SECCIONES -->
+    <section class="cards-grid">
+      <article class="card">
+        <h3>Ceremonia</h3>
+        <p>Finca palestina — Vereda la pileta</p>
+        <p><strong>Hora:</strong> 9:00 AM</p>
+        <a id="mapCeremony" href="#" class="link">Ver en mapa</a>
+      </article>
+
+      <article class="card">
+        <h3>Recepción</h3>
+        <p>Salón Los Olivos — Carrera 45 #67-89</p>
+        <p><strong>Hora:</strong> 11:30 AM</p>
+      </article>
+
+      <article class="card">
+        <h3>Código de vestimenta</h3>
+        <p>Formal elegante — tonos menta, gris y blanco.</p>
+      </article>
+
+      <article class="card">
+        <h3>Sugerencia de regalos</h3>
+        <p>Si deseas hacernos un detalle: sobres o contribuciones para la luna de miel.</p>
+      </article>
+    </section>
+
+    <!-- CONFIRMAR (WHATSAPP) -->
+    <section class="card rsvp-card">
+      <h3>Confirmar asistencia</h3>
+      <p>Elige a quién enviar el mensaje (se abrirá WhatsApp)</p>
+      <div class="rsvp-row">
+        <button id="toBride" class="btn glass">Enviar a la novia (WhatsApp)</button>
+        <button id="toGroom" class="btn outline">Enviar al novio (WhatsApp)</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="palette">
+        <span class="swatch mint" title="#3CEFB0"></span>
+        <span class="swatch gray" title="#9E9E9E"></span>
+        <span class="swatch white" title="#FFFFFF"></span>
+      </div>
+      <p class="tiny">David &amp; Carolina · 27 / 12 / 2025</p>
+    </footer>
+
+    <!-- EDIT / RSVP MODAL -->
+    <div id="modal" class="modal hidden" role="dialog" aria-hidden="true">
+      <div class="modal-panel">
+        <button id="closeModal" class="close">✕</button>
+
+        <!-- EDIT MESSAGE -->
+        <form id="editForm" class="modal-form">
+          <h4>Editar mensaje de bienvenida</h4>
+          <textarea id="msgInput" rows="4"></textarea>
+          <div class="modal-actions">
+            <button id="saveMsg" class="btn">Guardar</button>
+            <button id="cancelEdit" class="btn outline" type="button">Cancelar</button>
+          </div>
+        </form>
+
+        <!-- RSVP FORM (abre WhatsApp con texto) -->
+        <!-- RSVP FORM (abre WhatsApp con texto) -->
+<form id="rsvpForm" class="modal-form hidden">
+  <h4 id="rsvpTitle">Confirmar asistencia</h4>
+
+  <label>Tu nombre
+    <input id="guestName" type="text" placeholder="Escribe tu nombre" required>
+  </label>
+
+  <label>Qué canción quieres escuchar
+    <input id="guestSong" type="text" placeholder="Tu canción favorita" required>
+  </label>
+
+  <label>Mensaje (opcional)
+    <textarea id="guestMsg" rows="3" placeholder="Un mensaje para los novios"></textarea>
+  </label>
+
+  <div class="modal-actions">
+    <button id="sendWhats" class="btn" type="submit">Enviar por WhatsApp</button>
+    <button id="cancelRsvp" class="btn outline" type="button">Cancelar</button>
+  </div>
+</form>
+
+      </div>
+    </div>
+
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
