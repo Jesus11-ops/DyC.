@@ -119,24 +119,90 @@ envelope.addEventListener('click', openEnvelope);
 envelope.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') openEnvelope(); });
 
 /* ---------- music play/pause ---------- */
-let playing = false;
-if (playBtn) {
-  playBtn.addEventListener('click', () => {
-    const playIcon = playBtn.querySelector('.play-icon');
-    const pauseIcon = playBtn.querySelector('.pause-icon');
-    if (!playing) {
-      audio.play().catch(()=>{});
-      playBtn.textContent = 'Pausar canción ⏸';
-      playIcon.style.display = 'none';
-      pauseIcon.style.display = 'inline-block';
-      playing = true;
-    } else {
+/* ---------- REPRODUCTOR DE MÚSICA MEJORADO ---------- */
+const playPauseBtn = document.getElementById('playPauseBtn');
+const playIcon = document.getElementById('playIcon');
+const pauseIcon = document.getElementById('pauseIcon');
+const progressBar = document.getElementById('progressBar');
+const progressFill = document.getElementById('progressFill');
+const prevBtnMusic = document.getElementById('prevBtnMusic');
+const nextBtnMusic = document.getElementById('nextBtnMusic');
+const shuffleBtn = document.getElementById('shuffleBtn');
+const repeatBtn = document.getElementById('repeatBtn');
+
+let isPlaying = false;
+
+// Play/Pause
+if (playPauseBtn) {
+  playPauseBtn.addEventListener('click', () => {
+    if (isPlaying) {
       audio.pause();
-      playBtn.textContent = '🎵 Dale play a nuestra canción';
-      playIcon.style.display = 'inline-block';
+      playIcon.style.display = 'block';
       pauseIcon.style.display = 'none';
-      playing = false;
+      isPlaying = false;
+    } else {
+      audio.play().catch(() => {});
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = 'block';
+      isPlaying = true;
     }
+  });
+}
+
+// Actualizar barra de progreso
+if (audio) {
+  audio.addEventListener('timeupdate', () => {
+    const progress = (audio.currentTime / audio.duration) * 100;
+    progressBar.value = progress;
+    progressFill.style.width = progress + '%';
+  });
+}
+
+// Cambiar posición de la canción
+if (progressBar) {
+  progressBar.addEventListener('input', (e) => {
+    const time = (e.target.value / 100) * audio.duration;
+    audio.currentTime = time;
+  });
+}
+
+// Cuando termina la canción
+if (audio) {
+  audio.addEventListener('ended', () => {
+    playIcon.style.display = 'block';
+    pauseIcon.style.display = 'none';
+    isPlaying = false;
+    progressBar.value = 0;
+    progressFill.style.width = '0%';
+  });
+}
+
+// Botón anterior
+if (prevBtnMusic) {
+  prevBtnMusic.addEventListener('click', () => {
+    audio.currentTime = 0;
+  });
+}
+
+// Botón siguiente
+if (nextBtnMusic) {
+  nextBtnMusic.addEventListener('click', () => {
+    audio.currentTime = 0;
+  });
+}
+
+// Botón shuffle
+if (shuffleBtn) {
+  shuffleBtn.addEventListener('click', () => {
+    shuffleBtn.style.color = shuffleBtn.style.color === 'rgb(60, 239, 176)' ? 'var(--gray)' : 'var(--mint)';
+  });
+}
+
+// Botón repeat
+if (repeatBtn) {
+  repeatBtn.addEventListener('click', () => {
+    audio.loop = !audio.loop;
+    repeatBtn.style.color = audio.loop ? 'var(--mint)' : 'var(--gray)';
   });
 }
 
@@ -194,16 +260,26 @@ saveMsg && saveMsg.addEventListener('click', (e) => {
 });
 
 /* ---------- RSVP via WhatsApp (opens wa.me link) ---------- */
+function sendDirectWhatsApp(recipient) {
+  if (!recipient || recipient.includes('PHONE_')) {
+    alert('Por favor edita script.js y coloca el número real de la novia/novio (PHONE_BRIDE / PHONE_GROOM).');
+    return;
+  }
+  const text = encodeURIComponent('¡Hola! Dios te bendiga ');
+  const url = `https://wa.me/${recipient}?text=${text}`;
+  window.open(url, '_blank');
+}
+
+toBride && toBride.addEventListener('click', () => sendDirectWhatsApp(PHONE_BRIDE));
+toGroom && toGroom.addEventListener('click', () => sendDirectWhatsApp(PHONE_GROOM));
+
+/*
+  El código anterior reemplaza el flujo del modal. Si deseas revertirlo,
+  elimina el código de arriba y descomenta las siguientes líneas.
+
 let currentRecipient = null;
 toBride && toBride.addEventListener('click', ()=> { currentRecipient = PHONE_BRIDE; openRSVPModal('Enviar a la novia'); });
 toGroom && toGroom.addEventListener('click', ()=> { currentRecipient = PHONE_GROOM; openRSVPModal('Enviar al novio'); });
-
-function openRSVPModal(title){
-  modal.classList.remove('hidden');
-  editForm && editForm.classList.add('hidden');
-  rsvpForm && rsvpForm.classList.remove('hidden');
-  document.getElementById('rsvpTitle').textContent = title;
-}
 
 sendWhats && sendWhats.addEventListener('click', (e) => {
   e.preventDefault();
@@ -220,7 +296,7 @@ const text = `Dios te bendiga! Soy ${encodeURIComponent(name)}.%0AQuiero escucha
   const url = `https://wa.me/${currentRecipient}?text=${text}`;
   window.open(url, '_blank');
   modal.classList.add('hidden');
-});
+});*/
 
 /* ---------- PARTICLES (gold bokeh) ---------- */
 function startParticles(){
@@ -305,7 +381,7 @@ envelope.addEventListener('keydown', (e) => { if (e.key === 'Enter') openEnvelop
 /* FRASES ROTADORAS */
 const phrases = [
   "El amor no mira con los ojos, sino con el alma.",
-  "Juntos es mi lugar favorito.",
+  "Juntos es mi lugar favorito, donde mi corazón siempre encuentra paz.",
   "Donde esté tu corazón, estará mi hogar.",
   "Amar no es mirarse el uno al otro; es mirar juntos en la misma dirección."
 ];
@@ -319,6 +395,3 @@ document.getElementById('prevPhrase').addEventListener('click', ()=> {
   phraseIndex = (phraseIndex - 1 + phrases.length) % phrases.length;
   phraseText.textContent = '"' + phrases[phraseIndex] + '"';
 });
-
-
-

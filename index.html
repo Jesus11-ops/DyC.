@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Los estilos de los botones de confirmación se han movido a styles.css -->
+  
 </head>
 <body>
 
@@ -17,38 +20,9 @@
   <!-- PARTÍCULAS DORADAS (CANVAS) -->
   <canvas id="particlesCanvas" class="particles-canvas"></canvas>
 
-  <!-- SOBRE (PORTADA) -->
-  <main id="cover" class="cover">
-    <div class="cover-inner">
-      <!-- small decorative petals -->
-      <div class="petals" aria-hidden="true"></div>
-
-      <div class="title-block">
-        <div class="label">Nuestra Boda</div>
-        <h2 class="names">David &amp; Carolina</h2>
-        <div class="date">27 / 12 / 2025 — 9:00 AM</div>
-      </div>
-
-      <!-- Sobre realista: tapa + cuerpo + sello de lacre con icono 'play' -->
-      <div id="envelope" class="envelope" aria-label="Abrir invitación" role="button" tabindex="0">
-        <div class="env-shadow" aria-hidden="true"></div>
-        <!-- flap / tapa -->
-        <div class="env-top" aria-hidden="true"></div>
-
-        <!-- body: realistic gradient + decorative highlight -->
-        <div class="env-body">
-          <!-- env-body (no inline seal) -->
-        </div>
-        <!-- move wax seal outside env-body so it visually sits ABOVE the envelope seam -->
-        <div class="wax-seal" aria-hidden="true">
-          <div class="seal-outer"></div>
-          <div class="seal-inner" aria-hidden="true">
-            <div class="seal-emboss">D &amp; C</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cover-hint">CLICK PARA ABRIR LA INVITACION</div>
+  <!-- SOBRE (PORTADA) - Oculto, pero necesario para que el script de inicio funcione -->
+  <main id="cover" class="cover" style="display: none;">
+    <div id="envelope" aria-label="Abrir invitación" role="button" tabindex="0">
     </div>
   </main>
 
@@ -94,26 +68,127 @@
   </div>
 
   <div class="hero-bottom">
-    <p class="hero-sub">con nuestro amor, la bendición de Dios y de nuestros 
-      padres: <br> <br><br> Nosotros
+    <p class="hero-sub parents-text">Delimiro Martínez y Saudid Paternina || Emiro Osorio y Arlys Diaz <br><br>
+      padres de: <br>
     </p>
     <h1 class="hero-names">David &amp; Carolina</h1>
-    <p class="hero-sub"><br> 
-    Tenemos el honor de invitarte a celebrar nuestra unión en matrimonio </p>
+    <p class="hero-sub parents-text"><br> 
+    Es un honor para nosotros invitarte a la celebración del matrimonio de nuestros hijos. </p>
 
-    <div class="music-row">
-      <button id="playBtn" class="btn music glass">🎵 Dale play a nuestra canción </button>
-      <audio id="audio" preload="none">
-        <source src="img/Momentos.mp3" type="audio/mp3" >
-      </audio>
+    <div class="music-player-container">
+  <p class="music-title">Dale play a nuestra canción</p>
+  
+  <div class="music-player">
+    <!-- Barra de progreso -->
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+      <input type="range" id="progressBar" class="progress-slider" min="0" max="100" value="0">
     </div>
+    
+    <!-- Controles -->
+    <div class="player-controls">
+      <button id="shuffleBtn" class="control-btn secondary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>
+        </svg>
+      </button>
+      
+      <button id="prevBtnMusic" class="control-btn secondary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+        </svg>
+      </button>
+      
+      <button id="playPauseBtn" class="control-btn primary">
+        <svg id="playIcon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg id="pauseIcon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+          <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+        </svg>
+      </button>
+      
+      <button id="nextBtnMusic" class="control-btn secondary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M16 18h2V6h-2zm-11-7l8.5-6v12z"/>
+        </svg>
+      </button>
+      
+      <button id="repeatBtn" class="control-btn secondary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 1l4 4-4 4"/>
+          <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+          <path d="M7 23l-4-4 4-4"/>
+          <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <audio id="audio" preload="metadata">
+    <source src="img/Momentos.mp3" type="audio/mp3">
+  </audio>
+</div>
 
-    <div id="countdown" class="countdown fancy-countdown" aria-live="polite" >
-      <div class="cd-card"><span id="cd-days">--</span><small>Días</small></div>
-      <div class="cd-card"><span id="cd-hours">--</span><small>Horas</small></div>
-      <div class="cd-card"><span id="cd-mins">--</span><small>Minutos</small></div>
-      <div class="cd-card"><span id="cd-secs">--</span><small>Segundos</small></div>
+
+<!-- Fecha elegante -->
+<!-- Fecha elegante -->
+<div class="elegant-date-section">
+  <div class="date-month-top">DICIEMBRE</div>
+  
+  <div class="date-main-row">
+    <div class="date-left-side">
+      <div class="date-text-with-lines">
+        <div class="date-line-small"></div>
+        <span class="date-day-left">SÁBADO</span>
+        <div class="date-line-small"></div>
+      </div>
     </div>
+    
+    <div class="date-number-center">27</div>
+    
+    <div class="date-right-side">
+      <div class="date-text-with-lines">
+        <div class="date-line-small"></div>
+        <span class="date-year-right">2025</span>
+        <div class="date-line-small"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- COUNTDOWN -->
+    
+    <div class="countdown-title">FALTAN</div>
+<div id="countdown" class="countdown minimal-countdown" aria-live="polite">
+  <div class="cd-item">
+    <span id="cd-days" class="cd-number">--</span>
+    <span class="cd-label">Días</span>
+  </div>
+  
+  <span class="cd-separator">:</span>
+  
+  <div class="cd-item">
+    <span id="cd-hours" class="cd-number">--</span>
+    <span class="cd-label">Horas</span>
+  </div>
+  
+  <span class="cd-separator">:</span>
+  
+  <div class="cd-item">
+    <span id="cd-mins" class="cd-number">--</span>
+    <span class="cd-label">Min</span>
+  </div>
+  
+  <span class="cd-separator">:</span>
+  
+  <div class="cd-item">
+    <span id="cd-secs" class="cd-number">--</span>
+    <span class="cd-label">Seg</span>
+  </div>
+</div>
+
+
 
     
   </div>
@@ -123,27 +198,30 @@
   
 </div>
 
-<div class="photo-frame">
-        <img id="mainPhoto" class="main-photo" src="img/3.jpeg" alt="David & Carolina">
-      </div>
+<div class="photo-frame photo-full-height">
+  <img class="main-photo" src="img/3.jpeg" alt="David & Carolina">
+</div>
 
     
 
     
     <section class="card message-card">
       <div class="message-header">
-        <h2>Un mensaje para ti</h2>
+        <!--<h2>Un mensaje para ti</h2>-->
         <div class="message-actions">
           
         </div>
       </div>
-      <p id="welcomeText" class="welcome-text">“Hoy celebramos la decisión más bonita: unir nuestras vidas rodeados de las personas que amamos.”</p>
+      <p id="welcomeText" class="welcome-text">“Hoy celebramos la decisión más bonita:
+    unir nuestras vidas rodeados de las personas que amamos, y 
+    por eso tenemos el gusto de invitarte a compartir este día tan especial
+    y maravilloso y único.”</p>
     </section>
 
     
   <!-- FRASES ROTADORAS -->
     <section class="card section phrases">
-      <h2>Frases</h2>
+      <!-- <h2>Frases</h2>-->
       <blockquote id="phraseText">"El amor no mira con los ojos, sino con el alma."</blockquote>
       <div class="phrase-controls">
         <button id="prevPhrase">Anterior</button>
@@ -151,37 +229,216 @@
       </div>
     </section>
 
-    <!-- SECCIONES -->
-    <section class="cards-grid">
-      <article class="card">
-        <h3>Ceremonia</h3>
-        <p>Finca palestina — Vereda la pileta</p>
-        <p><strong>Hora:</strong> 9:00 AM</p>
-        <a id="mapCeremony" href="#" class="link">Ver en mapa</a>
-      </article>
-
-      <article class="card">
-        <h3>Recepción</h3>
-        <p>Salón Los Olivos — Carrera 45 #67-89</p>
-        <p><strong>Hora:</strong> 11:30 AM</p>
-      </article>
-
-      <article class="card">
-        <h3>Código de vestimenta</h3>
-        <p>Formal elegante — tonos menta, gris y blanco.</p>
-      </article>
-
-      <article class="card">
-        <h3>Sugerencia de regalos</h3>
-        <p>Si deseas hacernos un detalle: sobres o contribuciones para la luna de miel.</p>
-      </article>
-    </section>
 
 
-    <div class="photo-frame">
-        <img id="mainPhoto" class="main-photo" src="img/4.jpeg" alt="David & Carolina">
+
+    <!-- ITINERARIO DE ACTIVIDADES -->
+<!-- ITINERARIO DE ACTIVIDADES -->
+<section class="itinerary-section">
+  <h2 class="itinerary-title">ITINERARIO</h2>
+  
+  <div class="itinerary-timeline">
+    <!-- CEREMONIA (finca/casa de campo) -->
+    <div class="itinerary-item left">
+      <div class="itinerary-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+          <path d="M9 22V13h6v9"/>
+          <rect x="10" y="14" width="4" height="3"/>
+          <rect x="5" y="10" width="2" height="2"/>
+          <rect x="17" y="10" width="2" height="2"/>
+          <path d="M15 3h6v4l-3-2"/>
+          <circle cx="18" cy="6" r="1.5" fill="currentColor"/>
+        </svg>
       </div>
+      <div class="itinerary-text left-text">
+        <h3 class="itinerary-event">CEREMONIA</h3>
+        <p class="itinerary-time">9:00 AM</p>
+      </div>
+    </div>
 
+    <!-- RECEPCIÓN (copas de champagne ultra realistas) -->
+    <div class="itinerary-item right">
+      <div class="itinerary-text right-text">
+        <h3 class="itinerary-event">RECEPCIÓN</h3>
+        <p class="itinerary-time">10:30 AM</p>
+      </div>
+      <div class="itinerary-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <!-- Copa izquierda -->
+          <path d="M5 3l2 8v5h-2v4h4v-4h-2v-5l2-8z"/>
+          <ellipse cx="6" cy="3" rx="2.5" ry="0.8"/>
+          <line x1="7" y1="20" x2="5" y2="20" stroke-width="1.5"/>
+          
+          <!-- Copa derecha -->
+          <path d="M15 3l2 8v5h-2v4h4v-4h-2v-5l2-8z"/>
+          <ellipse cx="16" cy="3" rx="2.5" ry="0.8"/>
+          <line x1="17" y1="20" x2="15" y2="20" stroke-width="1.5"/>
+          
+          <!-- Burbujas de champagne -->
+          <circle cx="6" cy="8" r="0.5" fill="currentColor"/>
+          <circle cx="7" cy="6" r="0.4" fill="currentColor"/>
+          <circle cx="5.5" cy="10" r="0.4" fill="currentColor"/>
+          <circle cx="16" cy="8" r="0.5" fill="currentColor"/>
+          <circle cx="17" cy="6" r="0.4" fill="currentColor"/>
+          <circle cx="15.5" cy="10" r="0.4" fill="currentColor"/>
+          
+          <!-- Efecto de brindis (líneas de choque) -->
+          <path d="M10 2l1 2M11 1l-1 2" stroke-width="1" opacity="0.6"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ALMUERZO (plato con cubiertos ultra realista) -->
+    <div class="itinerary-item left">
+      <div class="itinerary-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <!-- Plato -->
+          <circle cx="12" cy="12" r="6.5"/>
+          <circle cx="12" cy="12" r="5" stroke-width="0.8" opacity="0.5"/>
+          <circle cx="12" cy="12" r="3.5" stroke-width="0.6" opacity="0.3"/>
+          
+          <!-- Tenedor (izquierda) -->
+          <line x1="3" y1="22" x2="3" y2="8" stroke-width="1.3"/>
+          <line x1="2" y1="8" x2="2" y2="5" stroke-width="1"/>
+          <line x1="3" y1="8" x2="3" y2="5" stroke-width="1"/>
+          <line x1="4" y1="8" x2="4" y2="5" stroke-width="1"/>
+          <path d="M2 5c0-1 0.5-1.5 1-1.5s1 0.5 1 1.5" stroke-width="0.8"/>
+          
+          <!-- Cuchillo (derecha) -->
+          <line x1="21" y1="22" x2="21" y2="8" stroke-width="1.3"/>
+          <path d="M20 8c0-2 0.5-4 1-5" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M21 3l1 1-1 1" stroke-width="1" fill="currentColor"/>
+          
+          <!-- Cuchara (arriba) -->
+          <line x1="12" y1="2" x2="12" y2="4" stroke-width="1"/>
+          <ellipse cx="12" cy="4.8" rx="1.5" ry="1" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="itinerary-text left-text">
+        <h3 class="itinerary-event">ALMUERZO</h3>
+        <p class="itinerary-time">12:00 PM</p>
+      </div>
+    </div>
+
+    <!-- AGRADECIMIENTO (corazón) -->
+    <div class="itinerary-item right last">
+      <div class="itinerary-text right-text">
+        <h3 class="itinerary-event">AGRADECIMIENTO</h3>
+        <p class="itinerary-time">3:00 PM</p>
+      </div>
+      <div class="itinerary-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ITINERARIO DE ACTIVIDADES -->
+
+    <!-- SECCIONES -->
+<!-- SECCIONES CON ICONOS -->
+<section class="event-cards-grid">
+  
+  <!-- CÓDIGO DE VESTIMENTA -->
+  <article class="event-card">
+    <h3 class="event-title">COLORES RESERVADOS</h3>
+    
+    <div class="palette">
+      <span class="swatch mint" title="#3CEFB0"></span>
+      <span class="swatch gray" title="#9E9E9E"></span>
+      <span class="swatch white" title="#FFFFFF"></span>
+    </div>
+
+    <h3 class="event-title">CÓDIGO DE VESTIMENTA</h3>
+    <p class="event-location">
+      <strong>Damas:</strong> Vestido unicolor<br>
+      <strong>Hombres:</strong> Formal
+    </p>
+    
+    <!-- Icono de traje realista -->
+    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="1.2" style="margin-top: 12px;">
+      <!-- Chaqueta -->
+      <path d="M6 8l-2 2v10h4v-10z"/>
+      <path d="M18 8l2 2v10h-4v-10z"/>
+      <path d="M6 8l6-6l6 6"/>
+      
+      <!-- Solapa izquierda -->
+      <path d="M6 8l3 4v8"/>
+      <!-- Solapa derecha -->
+      <path d="M18 8l-3 4v8"/>
+      
+      <!-- Cuello de camisa -->
+      <path d="M10 2l2 3l2-3"/>
+      <line x1="10" y1="5" x2="12" y2="8"/>
+      <line x1="14" y1="5" x2="12" y2="8"/>
+      
+      <!-- Corbata -->
+      <path d="M12 8l-1 4l1 8l1-8z"/>
+      
+      <!-- Botones -->
+      <circle cx="12" cy="12" r="0.5" fill="var(--mint)"/>
+      <circle cx="12" cy="14.5" r="0.5" fill="var(--mint)"/>
+      <circle cx="12" cy="17" r="0.5" fill="var(--mint)"/>
+      
+      <!-- Bolsillos -->
+      <rect x="7" y="13" width="2" height="1.5" rx="0.2"/>
+      <rect x="15" y="13" width="2" height="1.5" rx="0.2"/>
+    </svg>
+  </article>
+
+  <!-- SUGERENCIA DE REGALOS -->
+  <article class="event-card">
+   <!-- SUGERENCIA DE REGALOS -->
+
+  <h3 class="event-title">SUGERENCIA DE REGALOS</h3>
+  
+  <p class="event-location">
+    El mejor regalo es tu presencia pero si deseas llevar un regalo con nosotros, les dejamos estas opciones:
+  </p>
+  
+  <!-- Lluvia de sobres -->
+  <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+    <p class="event-location" style="margin: 0; font-weight: 600;">
+      <strong>Lluvia de sobres</strong>
+    </p>
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+      <polyline points="22,6 12,13 2,6"></polyline>
+    </svg>
+  </div>
+  
+  <!-- Transferencia -->
+  <p class="event-location" style="margin-top: 20px;">
+    <strong>Transferencia</strong><br>
+    <strong>Nequi:</strong> 3045309913 - 3013556224
+  </p>
+  
+  <!-- Regalos -->
+  <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+    <p class="event-location" style="margin: 0; font-weight: 600;">
+      <strong>Regalos</strong>
+    </p>
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="1.5">
+      <polyline points="20 12 20 22 4 22 4 12"/>
+      <rect x="2" y="7" width="20" height="5"/>
+      <line x1="12" y1="22" x2="12" y2="7"/>
+      <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/>
+      <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/>
+    </svg>
+  </div>
+
+  </article>
+</section>
+
+<!-- ESPACIO ADICIONAL -->
+<div style="margin-top: 60px;"></div>
+
+<!-- FOTO -->
+<div class="photo-frame">
+  <img id="mainPhoto" class="main-photo" src="img/4.jpeg" alt="David & Carolina">
+</div>
 
     <!-- CONFIRMAR (WHATSAPP) -->
     <section class="card rsvp-card">
@@ -189,62 +446,36 @@
       <p>Elige a quién enviar el mensaje (se abrirá WhatsApp)</p>
       <div class="rsvp-row">
         <button id="toBride" class="btn glass">Enviar a la novia (WhatsApp)</button>
-        <button id="toGroom" class="btn outline">Enviar al novio (WhatsApp)</button>
+        <button id="toGroom" class="btn glass">Enviar al novio (WhatsApp)</button>
       </div>
     </section>
 
-    <footer class="footer">
-      <div class="palette">
-        <span class="swatch mint" title="#3CEFB0"></span>
-        <span class="swatch gray" title="#9E9E9E"></span>
-        <span class="swatch white" title="#FFFFFF"></span>
-      </div>
-      <p class="tiny">David &amp; Carolina · 27 / 12 / 2025</p>
-    </footer>
-
-    <!-- EDIT / RSVP MODAL -->
-    <div id="modal" class="modal hidden" role="dialog" aria-hidden="true">
-      <div class="modal-panel">
-        <button id="closeModal" class="close">✕</button>
-
-        <!-- EDIT MESSAGE -->
-        <form id="editForm" class="modal-form">
-          <h4>Editar mensaje de bienvenida</h4>
-          <textarea id="msgInput" rows="4"></textarea>
-          <div class="modal-actions">
-            <button id="saveMsg" class="btn">Guardar</button>
-            <button id="cancelEdit" class="btn outline" type="button">Cancelar</button>
-          </div>
-        </form>
-
-        <!-- RSVP FORM (abre WhatsApp con texto) -->
-        <!-- RSVP FORM (abre WhatsApp con texto) -->
-<form id="rsvpForm" class="modal-form hidden">
-  <h4 id="rsvpTitle">Confirmar asistencia</h4>
-
-  <label>Tu nombre
-    <input id="guestName" type="text" placeholder="Escribe tu nombre" required>
-  </label>
-
-  <label>Qué canción quieres escuchar
-    <input id="guestSong" type="text" placeholder="Tu canción favorita" required>
-  </label>
-
-  <label>Mensaje (opcional)
-    <textarea id="guestMsg" rows="3" placeholder="Un mensaje para los novios"></textarea>
-  </label>
-
-  <div class="modal-actions">
-    <button id="sendWhats" class="btn" type="submit">Enviar por WhatsApp</button>
-    <button id="cancelRsvp" class="btn outline" type="button">Cancelar</button>
+    <!-- FOOTER ELEGANTE -->
+<footer class="footer card">
+  <div class="footer-thanks">
+    <svg class="footer-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M12 20.84l-1.41-1.41C5.61 14.75 2 11.53 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.03-3.61 6.25-8.59 10.93L12 20.84z"/>
+    </svg>
+    <p class="footer-message">¡Esperamos contar con tu presencia!</p>
+    <svg class="footer-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="transform: scaleX(-1);">
+      <path d="M12 20.84l-1.41-1.41C5.61 14.75 2 11.53 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.03-3.61 6.25-8.59 10.93L12 20.84z"/>
+    </svg>
   </div>
-</form>
+  <div class="footer-divider"></div>
+  <p class="footer-names">David &amp; Carolina</p>
+</footer>
 
-      </div>
-    </div>
-
-  </section>
+    
 
   <script src="script.js"></script>
+  <script>
+    // Simula el clic en el sobre para iniciar todo automáticamente al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      const envelope = document.getElementById('envelope');
+      if (envelope) {
+        envelope.click();
+      }
+    });
+  </script>
 </body>
 </html>
