@@ -786,8 +786,10 @@ body{
 }
 
 .welcome-text {
+  font-family: 'Playfair Display', serif;
   font-style: italic;
   color: var(--gray);
+  color: var(--black);
   line-height: 1.6;
 }
 
