@@ -11,6 +11,56 @@
   <link rel="stylesheet" href="styles.css">
 
   <!-- Los estilos de los botones de confirmación se han movido a styles.css -->
+  <style>
+    body {
+      /* Fondo blanco para el exterior */
+      background-color: #FFFFFF;
+    }
+    #particlesCanvas {
+      /* Hacemos visible el canvas de nuevo */
+      display: block !important;
+      /* Limitamos el ancho para que no ocupe toda la pantalla */
+      left: 5%;
+      right: 5%;
+    }
+    /* Estilos para centrar botones en pantallas pequeñas */
+    @media (max-width: 600px) {
+      .rsvp-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem; /* Espacio entre botones */
+      }
+      .rsvp-row .btn {
+        width: 90%; /* Ancho de los botones */
+      }
+    }
+    /* Sobrescribir colores de texto grises a negro */
+    .hero-sub,
+    .cd-label,
+    .itinerary-time,
+    .event-location,
+    .countdown-title,
+    .date-month-top,
+    .date-day-left,
+    .date-year-right,
+    .welcome-text {
+      color: #000000 !important;
+    }
+
+    /* Aumentar tamaño de la cuenta regresiva */
+    .countdown-title {
+      font-size: 0.7rem !important; /* Un poco más grande */
+    }
+    .cd-number {
+      font-size: 2rem !important; /* Números más grandes */
+    }
+    .cd-label {
+      font-size: 0.5rem !important; /* Etiquetas un poco más grandes */
+    }
+    .cd-separator {
+      font-size: 2.5rem !important; /* Separadores más grandes */
+    }
+  </style>
   
 </head>
 <body>
@@ -159,7 +209,7 @@
 
     <!-- COUNTDOWN -->
     
-    <div class="countdown-title">FALTAN</div>
+    <div class="countdown-title" style="margin-top: -1rem;">FALTAN</div>
 <div id="countdown" class="countdown minimal-countdown" aria-live="polite">
   <div class="cd-item">
     <span id="cd-days" class="cd-number">--</span>
@@ -350,6 +400,9 @@
       <span class="swatch gray" title="#9E9E9E"></span>
       <span class="swatch white" title="#FFFFFF"></span>
     </div>
+    <div style="margin-top: 50px;">
+
+    </div>
 
     <h3 class="event-title">CÓDIGO DE VESTIMENTA</h3>
     <p class="event-location">
@@ -401,7 +454,7 @@
   <!-- Lluvia de sobres -->
   <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
     <p class="event-location" style="margin: 0; font-weight: 600;">
-      <strong>Lluvia de sobres</strong>
+      <strong>LLUVIA DE SOBRES</strong>
     </p>
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -411,14 +464,14 @@
   
   <!-- Transferencia -->
   <p class="event-location" style="margin-top: 20px;">
-    <strong>Transferencia</strong><br>
+    <strong>TRANSFERENCIA</strong><br>
     <strong>Nequi:</strong> 3045309913 - 3013556224
   </p>
   
   <!-- Regalos -->
   <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
     <p class="event-location" style="margin: 0; font-weight: 600;">
-      <strong>Regalos</strong>
+      <strong>REGALOS</strong>
     </p>
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="1.5">
       <polyline points="20 12 20 22 4 22 4 12"/>
@@ -442,7 +495,7 @@
 
     <!-- CONFIRMAR (WHATSAPP) -->
     <section class="card rsvp-card">
-      <h3>Confirmar asistencia</h3>
+      <h3>CONFIRMAR ASISTENCIA</h3>
       <p>Elige a quién enviar el mensaje (se abrirá WhatsApp)</p>
       <div class="rsvp-row">
         <button id="toBride" class="btn glass">Enviar a la novia (WhatsApp)</button>

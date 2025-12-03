@@ -271,9 +271,15 @@ body{
   position:relative; 
   max-width:980px; 
   margin:28px auto; 
+  margin: 28px auto;
   padding:18px; 
   z-index:10; 
+  background-color: #eeebe9; /* Color de fondo */
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
+
 
 .sparkles{ 
   position:absolute; 
@@ -749,11 +755,11 @@ body{
 
 /* -------------- CARDS -------------- */
 .card{ 
-  background:var(--white); 
+  background:transparent; 
   border-radius:12px; 
   padding:14px; 
   margin-bottom: 18px;
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 .card h3 {
@@ -1050,6 +1056,12 @@ body{
     width: 35px;
     height: 35px;
     font-size: 20px;
+  }
+
+  .app {
+    margin: 10px;
+    padding: 10px;
+    width: calc(100% - 20px);
   }
 }
 
@@ -1485,10 +1497,10 @@ body{
 }
 
 .event-card {
-  background: var(--white);
+  background: transparent;
   border-radius: 16px;
   padding: 30px 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
@@ -1496,7 +1508,7 @@ body{
 
 .event-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(60, 239, 176, 0.15);
+  box-shadow: none;
 }
 
 .event-icon {
@@ -1605,17 +1617,22 @@ body{
     font-size: 12px;
     padding: 9px 20px;
   }
+
+  /* Reducir espacio en móviles */
+  .event-cards-grid {
+    margin-top: -5px;
+  }
 }
 
 /* ============= ITINERARIO DE ACTIVIDADES ============= */
 /* ============= ITINERARIO DE ACTIVIDADES - ALTERNADO ============= */
 .itinerary-section {
-  background: var(--white);
+  background: transparent;
   border-radius: 16px;
   padding: 40px 30px;
   margin: 30px auto;
   max-width: 500px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
   position: relative;
 }
 
@@ -1996,11 +2013,3 @@ body{
     margin-top: 40px;
   }
 }
-
-
-
-
-
-
-
-
